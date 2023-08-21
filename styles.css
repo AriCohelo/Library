@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    background-color: rgb(173, 141, 0);
+}
+
+.bookCard {
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    box-shadow: 0 0 10px black;
+    border-radius: 10px;
+    align-items: center;
+    background-color: rgb(255, 217, 167);
+}
+
+#bookCardsContainer {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    border: 2px solid black;
+    margin: 30px;
+}
+
+.cover {
+    height: 100px;
+    box-shadow: 0 0 5px black;
+}
+
+.infoParag {
+    margin: 10px;
+}
