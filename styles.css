@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: rgb(173, 141, 0);
+    height: 200vh;
 }
 
 .bookCard {
@@ -28,4 +29,23 @@ body {
 
 .infoParag {
     margin: 10px;
+}
+
+#addBookButton {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: blue;
+    border: none;
+    box-shadow: 0 0 10px black;
+    color: gray;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal {
+    max-width: 50vw;
+    padding: 20px;
 }

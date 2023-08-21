@@ -88,3 +88,18 @@ function bookOnBookCard() {
 }
 addBookToTheLibrary('un libro', 'de alguien', 100000, 'nose')
 bookOnBookCard();
+
+let addBookButton = document.getElementById('addBookButton');
+let modal = document.getElementById('modal')
+addBookButton.addEventListener('click', () => {
+    modal.showModal();
+})
+
+let submitButton = document.getElementById('submitButton');
+submitButton.addEventListener('click', submit)
+
+function submit() {
+    event.preventDefault();
+    let title = document.getElementById('title')
+    console.log(title.value);
+}

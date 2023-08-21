@@ -10,6 +10,29 @@
 
 <body>
     <div id="bookCardsContainer"></div>
+    <button id="addBookButton">+</button>
+    <dialog id="modal">
+        <form action="">
+            <div>
+                <label class="label" for="title">title</label>
+                <input type="text" id="title">
+            </div>
+            <div>
+                <label class="label" for="author">author</label>
+                <input type="text" id="author">
+            </div>
+            <div>
+                <label class="label" for="pages">pages</label>
+                <input type="text" id="pages">
+            </div>
+            <div>
+                <input type="checkbox" id="readed">
+                <label for="readed">have you readed this book?</label>
+            </div>
+            <input type="submit" id="submitButton">
+        </form>
+    </dialog>
+
     <script src="code.js"></script>
 </body>
 
