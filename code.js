@@ -1,40 +1,43 @@
-// let myLibrary = [{
-//     title: 'bestiario',
-//     author: 'julio cortazar',
-//     pages: 200,
-//     status: 'readed',
-//     cover: 'covers/bestiario.png',
-//     info: function () {
-//         return bookInfo.call(this);
-//     },
+
+//Alt2
+
+let myLibrary = [{
+    title: 'bestiario',
+    author: 'julio cortazar',
+    pages: 200,
+    status: 'readed',
+    cover: 'covers/bestiario.png',
+    info: function () {
+        return bookInfo.call(this);
+    },
 
 }, {
     title: 'el lobo estepario',
-        author: 'hermann hesse',
-            pages: 250,
-                status: 'readed',
-                    cover: 'covers/loboestepario.jpeg',
-                        info: function () {
-                            return bookInfo.call(this);
-                        }
+    author: 'hermann hesse',
+    pages: 250,
+    status: 'readed',
+    cover: 'covers/loboestepario.jpeg',
+    info: function () {
+        return bookInfo.call(this);
+    }
 }, {
     title: 'la casa de los espiritus',
-        author: 'isabel allende',
-            pages: 300,
-                status: 'readed',
-                    cover: 'covers/espiritus.jpeg',
-                        info: function () {
-                            return bookInfo.call(this);
-                        }
+    author: 'isabel allende',
+    pages: 300,
+    status: 'readed',
+    cover: 'covers/espiritus.jpeg',
+    info: function () {
+        return bookInfo.call(this);
+    }
 }, {
     title: 'el mundo como voluntad y representacion',
-        author: 'arthur schopenhauer',
-            pages: 290,
-                status: 'not readed',
-                    cover: 'covers/voluntad.jpg',
-                        info: function () {
-                            return bookInfo.call(this);
-                        }
+    author: 'arthur schopenhauer',
+    pages: 290,
+    status: 'not readed',
+    cover: 'covers/voluntad.jpg',
+    info: function () {
+        return bookInfo.call(this);
+    }
 }];
 function bookInfo() {
     return `title: ${this.title}, author: ${this.author}, 
