@@ -9,7 +9,7 @@ let myLibrary = [{
     cover: 'covers/bestiario.png',
     info: function () {
         return bookInfo.call(this);
-    }
+    },
 
 }, {
     title: 'el lobo estepario',
@@ -20,7 +20,6 @@ let myLibrary = [{
     info: function () {
         return bookInfo.call(this);
     }
-
 }, {
     title: 'la casa de los espiritus',
     author: 'isabel allende',
@@ -30,7 +29,6 @@ let myLibrary = [{
     info: function () {
         return bookInfo.call(this);
     }
-
 }, {
     title: 'el mundo como voluntad y representacion',
     author: 'arthur schopenhauer',
@@ -40,11 +38,12 @@ let myLibrary = [{
     info: function () {
         return bookInfo.call(this);
     }
-
+}];
+function bookInfo() {
+    return `title: ${this.title}, author: ${this.author}, 
+            pages: ${this.pages}, status: ${this.status}`;
 }
 
-
-];
 function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
@@ -55,42 +54,27 @@ function Book(title, author, pages, status) {
     }
 }
 
-function bookInfo() {
-    return `title: ${this.title}, author: ${this.author}, 
-            pages: ${this.pages}, status: ${this.status}`;
-}
-
-function addBookToTheLibrary(title, author, pages, status) {
-    let newBook = new Book(title, author, pages, status)
-    myLibrary.push(newBook)
-
-}
-
+let prueba = new Book('nada', 'algo', 'maomeno');
+console.log(prueba)
 function deleteBook(event) {
-    // The event.target represents the element that triggered the event (in this case, the Delete button)
     let deleteButton = event.target;
-
-    // Use closest() to find the closest ancestor element with the class "bookCard"
     let bookCard = deleteButton.closest('.bookCard');
-
     if (bookCard) {
-        // Now you have a reference to the parent book card element, and you can manipulate or remove it as needed
         bookCard.remove();
     }
 }
+Book.prototype.toggleStatus = function () {
+    this.status === 'readed' ? this.status = 'not readed' : this.status = 'readed';
+    return this.status;
+}
 
 
-function bookOnCard() {
+function bookOnCard(event) {
     bookCardsContainer.innerHTML = '';
     for (let i = 0; i < myLibrary.length; i++) {
         let bookCard = document.createElement('div');
         bookCard.classList.add('bookCard');
         bookCardsContainer.appendChild(bookCard);
-        // bookCard.setAttribute('data-index', i);
-
-        // //borrar
-        // let index = bookCard.getAttribute('data-index');
-        // console.log(index);
 
         let cover = document.createElement('img')
         cover.classList.add('cover');
@@ -108,9 +92,51 @@ function bookOnCard() {
         deleteButton.innerText = '-'
         bookCard.appendChild(deleteButton)
         deleteButton.addEventListener('click', deleteBook)
+
+        let currentBook = new Book(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].status);
+
+        let toggleButton = document.createElement('button');
+        toggleButton.innerText = 'toggle';
+        bookCard.appendChild(toggleButton);
+        toggleButton.addEventListener('click', function () {
+            currentBook.toggleStatus();
+            console.log(currentBook.status)
+        })
+
+        let colorButton = document.createElement('button')
+        colorButton.textContent = 'color';
+        bookCard.appendChild(colorButton)
+        colorButton.addEventListener('click', function () {
+            bookCard.style.backgroundColor = 'red';
+        })
+
+
     }
 }
 
+function addBookToTheLibrary(title, author, pages, status) {
+    let newBook = new Book(title, author, pages, status)
+    let bookCard = document.createElement('div');
+    bookCard.classList.add('bookCard');
+    bookCardsContainer.appendChild(bookCard);
+
+    let cover = document.createElement('img')
+    cover.classList.add('cover');
+    cover.src = 'Covers/generic.png';
+    bookCard.appendChild(cover);
+
+    let infoParag = document.createElement('p');
+    let bookInfo = newBook.info();
+    bookInfo = bookInfo.replace(/, /g, '<br>');
+    infoParag.classList.add('infoParag')
+    infoParag.innerHTML = bookInfo;
+    bookCard.appendChild(infoParag);
+
+    let deleteButton = document.createElement('button');
+    deleteButton.innerText = '-'
+    bookCard.appendChild(deleteButton)
+    deleteButton.addEventListener('click', deleteBook)
+}
 
 let addBookButton = document.getElementById('addBookButton');
 let modal = document.getElementById('modal')
@@ -131,13 +157,12 @@ function submit(event) {
     let notReaded = document.getElementById('notReaded')
     readed.checked ? status = 'readed' : status = 'not readed';
     addBookToTheLibrary(title.value, author.value, pages.value, status);
-    bookOnCard();
     modal.close();
     title.value = '';
     author.value = '';
     pages.value = '';
     notReaded.checked = true;
-
 }
 
 bookOnCard();
+
