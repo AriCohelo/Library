@@ -59,6 +59,13 @@ Book.prototype.toggleStatus = function () {
     return this.status;
 }
 
+function deleteBook(event) {
+    let deleteButton = event.target;
+    let bookCard = deleteButton.closest('.bookCard');
+    if (bookCard) {
+        bookCard.remove();
+    }
+}
 
 function bookOnCard() {
     bookCardsContainer.innerHTML = '';
