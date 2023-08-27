@@ -54,53 +54,56 @@ function Book(title, author, pages, status) {
     }
 }
 
-let prueba = new Book('nada', 'algo', 'maomeno');
-console.log(prueba)
-function deleteBook(event) {
-    let deleteButton = event.target;
-    let bookCard = deleteButton.closest('.bookCard');
-    if (bookCard) {
-        bookCard.remove();
-    }
-}
 Book.prototype.toggleStatus = function () {
     this.status === 'readed' ? this.status = 'not readed' : this.status = 'readed';
     return this.status;
 }
 
 
-function bookOnCard(event) {
+function bookOnCard() {
     bookCardsContainer.innerHTML = '';
     for (let i = 0; i < myLibrary.length; i++) {
+        let currentBook = new Book(myLibrary[i].title, myLibrary[i].author,
+            myLibrary[i].pages, myLibrary[i].status, myLibrary[i].cover);
+
         let bookCard = document.createElement('div');
         bookCard.classList.add('bookCard');
         bookCardsContainer.appendChild(bookCard);
 
         let cover = document.createElement('img')
         cover.classList.add('cover');
-        cover.src = myLibrary[i].cover ? myLibrary[i].cover : 'Covers/generic.png';
+        cover.src = myLibrary[i].cover;
         bookCard.appendChild(cover);
 
-        let infoParag = document.createElement('p');
-        let bookInfo = myLibrary[i].info();
-        bookInfo = bookInfo.replace(/, /g, '<br>');
-        infoParag.classList.add('infoParag')
-        infoParag.innerHTML = bookInfo;
-        bookCard.appendChild(infoParag);
+        let title = document.createElement('p');
+        title.textContent = currentBook.title;
+        bookCard.appendChild(title);
+
+        let author = document.createElement('p');
+        author.textContent = currentBook.author;
+        bookCard.appendChild(author);
+
+        let pages = document.createElement('p');
+        pages.textContent = currentBook.pages;
+        bookCard.appendChild(pages);
+
+        let status = document.createElement('p');
+        status.textContent = currentBook.status;
+        bookCard.appendChild(status)
 
         let deleteButton = document.createElement('button');
         deleteButton.innerText = '-'
         bookCard.appendChild(deleteButton)
         deleteButton.addEventListener('click', deleteBook)
 
-        let currentBook = new Book(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].status);
 
         let toggleButton = document.createElement('button');
         toggleButton.innerText = 'toggle';
         bookCard.appendChild(toggleButton);
         toggleButton.addEventListener('click', function () {
             currentBook.toggleStatus();
-            console.log(currentBook.status)
+            status.textContent = currentBook.status;
+
         })
 
     }
@@ -117,17 +120,37 @@ function addBookToTheLibrary(title, author, pages, status) {
     cover.src = 'Covers/generic.png';
     bookCard.appendChild(cover);
 
-    let infoParag = document.createElement('p');
-    let bookInfo = newBook.info();
-    bookInfo = bookInfo.replace(/, /g, '<br>');
-    infoParag.classList.add('infoParag')
-    infoParag.innerHTML = bookInfo;
-    bookCard.appendChild(infoParag);
+    let newBookTitle = document.createElement('p');
+    newBookTitle.textContent = newBook.title;
+    bookCard.appendChild(newBookTitle);
+
+    let newBookAuthor = document.createElement('p');
+    newBookAuthor.textContent = newBook.author;
+    bookCard.appendChild(newBookAuthor);
+
+    let newBookPages = document.createElement('p');
+    newBookPages.textContent = newBook.pages;
+    bookCard.appendChild(newBookPages);
+
+    let newBookStatus = document.createElement('p');
+    newBookStatus.textContent = newBook.status;
+    bookCard.appendChild(newBookStatus);
 
     let deleteButton = document.createElement('button');
     deleteButton.innerText = '-'
     bookCard.appendChild(deleteButton)
     deleteButton.addEventListener('click', deleteBook)
+
+    let toggleButton = document.createElement('button');
+    toggleButton.innerText = 'toggle';
+    bookCard.appendChild(toggleButton);
+    toggleButton.addEventListener('click', function () {
+        newBook.toggleStatus();
+        infoParag.innerHTML = newBook.info().replace(/, /g, '<br>');
+
+    })
+
+
 }
 
 let addBookButton = document.getElementById('addBookButton');
