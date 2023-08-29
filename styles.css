@@ -4,14 +4,30 @@ body {
     height: 200vh;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    font-family: 'Roboto', sans-serif;
+}
+
 .bookCard {
     margin: 20px;
-    padding: 20px;
-    display: flex;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 5px;
     box-shadow: 0 0 10px black;
     border-radius: 10px;
     align-items: center;
     background-color: rgb(255, 217, 167);
+}
+
+#bookcardButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    margin: 0px 10px 0px 10px;
 }
 
 #bookCardsContainer {
@@ -26,8 +42,8 @@ body {
     box-shadow: 0 0 5px black;
 }
 
-.infoParag {
-    margin: 10px;
+#bookcardInfo {
+    margin: 10px 10px 10px 10px;
 }
 
 #addBookButton {
@@ -42,9 +58,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 15px;
 }
 
 #modal {
     max-width: 50vw;
     padding: 20px;
+}
+
+.info {
+    text-transform: capitalize;
+    margin: 5px 0px 5px 0px;
+}
+
+.trashCanIcon {
+    transform: scale(.4);
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+}
+
+.toggleButton {
+    height: 30px;
+    width: 120px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+
 }
