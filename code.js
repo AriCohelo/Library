@@ -1,11 +1,8 @@
-
-//Main
-
 let myLibrary = [{
     title: 'bestiario',
     author: 'julio cortazar',
     pages: 200,
-    status: 'readed',
+    status: 'read',
     cover: 'covers/bestiario.png',
     info: function () {
         return bookInfo.call(this);
@@ -15,7 +12,7 @@ let myLibrary = [{
     title: 'el lobo estepario',
     author: 'hermann hesse',
     pages: 250,
-    status: 'readed',
+    status: 'read',
     cover: 'covers/loboestepario.jpeg',
     info: function () {
         return bookInfo.call(this);
@@ -24,7 +21,7 @@ let myLibrary = [{
     title: 'la casa de los espiritus',
     author: 'isabel allende',
     pages: 300,
-    status: 'readed',
+    status: 'read',
     cover: 'covers/espiritus.jpeg',
     info: function () {
         return bookInfo.call(this);
@@ -33,7 +30,7 @@ let myLibrary = [{
     title: 'el mundo como voluntad y representacion',
     author: 'a. schopenhauer',
     pages: 290,
-    status: 'unreaded',
+    status: 'unread',
     cover: 'covers/voluntad.jpg',
     info: function () {
         return bookInfo.call(this);
@@ -55,7 +52,7 @@ function Book(title, author, pages, status) {
 }
 
 Book.prototype.toggleStatus = function () {
-    this.status === 'readed' ? this.status = 'unreaded' : this.status = 'readed';
+    this.status === 'read' ? this.status = 'unread' : this.status = 'read';
     return this.status;
 }
 
@@ -89,7 +86,7 @@ function bookOnCard() {
 
         let toggleButton = document.createElement('button');
         toggleButton.textContent = currentBook.status;
-        toggleButton.textContent === 'readed' ?
+        toggleButton.textContent === 'read' ?
             toggleButton.style.color = 'green' : toggleButton.style.color = 'brown';
 
         bookcardButtons.appendChild(toggleButton);
@@ -97,7 +94,7 @@ function bookOnCard() {
         toggleButton.addEventListener('click', function () {
             currentBook.toggleStatus();
             toggleButton.textContent = currentBook.status;
-            toggleButton.textContent === 'readed' ?
+            toggleButton.textContent === 'read' ?
                 toggleButton.style.color = 'green' : toggleButton.style.color = 'brown';
         })
 
@@ -148,15 +145,15 @@ function submitNewBook(event) {
     let title = document.getElementById('title');
     let author = document.getElementById('author');
     let pages = document.getElementById('pages');
-    let readed = document.getElementById('readed');
-    let notReaded = document.getElementById('notReaded')
-    readed.checked ? status = 'readed' : status = 'not readed';
+    let read = document.getElementById('read');
+    let unread = document.getElementById('unread')
+    read.checked ? status = 'read' : status = 'unread';
     addBookToTheLibrary(title.value, author.value, pages.value, status);
     addModal.close();
     title.value = '';
     author.value = '';
     pages.value = '';
-    notReaded.checked = true;
+    unread.checked = true;
 }
 
 let addBookButton = document.getElementById('addBookButton');

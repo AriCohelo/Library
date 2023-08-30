@@ -12,37 +12,37 @@
 <body>
     <div id="header">
         <div id="headerTitle">My Library</div>
-        <button id="addBookButton">+</button>
+        <div id="addBookButtonContainer">
+            <svg id="addBookButton" viewbox="0 0 25 25">
+                <use class='usePrueba' href="#addSVG" />
+            </svg>
+        </div>
     </div>
 
     <div id="bookCardsContainer"></div>
     <dialog id="addModal">
         <form action="">
-            <div>
-                <label class="label" for="title">*title</label>
+            <div id="textInputContainer">
+                <label class="label" for="title">*Title</label>
                 <input type="text" id="title" required>
-            </div>
-            <div>
-                <label class="label" for="author">*author</label>
+                <label class="label" for="author">*Author</label>
                 <input type="text" id="author" required>
-            </div>
-            <div>
-                <label class="label" for="pages" required="">*pages</label>
+                <label class="label" for="pages" required="">*Pages</label>
                 <input type="text" id="pages">
             </div>
-            <div>
-                <p>have you read this book?</p>
-                <label for="readed">yes</label>
-                <input type="radio" name='readed?' id="readed" value="readed">
-                <label for="readed">no</label>
-                <input type="radio" name='readed?' id="notReaded" value="not readed">
+            <p style="margin: 5px">Have you read this book?</p>
+            <div id="radioButtons">
+                <input type="radio" name='read?' id="read" value="read">
+                <label for="read">yes</label>
+                <input type="radio" name='read?' id="unread" value="not read">
+                <label for="read">no</label>
             </div>
             <input type="submit" id="submitNewBookButton" value="Add">
         </form>
     </dialog>
     <dialog id="deleteModal">
-        <p>do you really want to delete this book?</p>
-        <button id="deleteButton">delete</button>
+        <p>Do you really want to delete this book?</p>
+        <button id="deleteButton">Delete</button>
     </dialog>
     <svg style="display: none;">
         <symbol id="trashCan">
@@ -53,8 +53,11 @@
             -23c0,-1.105 0.895,-2 2,-2zM32,26c1.657,0 3,1.343 3,3v22h-6v-22c0,-1.657 1.343,
             -3 3,-3zM44,26c1.105,0 2,0.895 2,2l-1,23h-3v-23c0,-1.105 0.895,-2 2,-2z" />
         </symbol>
+        <symbol id="addSVG">
+            <path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,
+                0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </symbol>
     </svg>
-
     <script src="code.js"></script>
 </body>
 

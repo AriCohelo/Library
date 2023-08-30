@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: rgb(173, 141, 0);
+    background-color: #B57114;
     height: 200vh;
     box-sizing: border-box;
 }
@@ -14,13 +14,14 @@ body {
 #header {
     position: sticky;
     top: 0;
-    background-color: rgb(164, 172, 13);
+    background-color: #706513;
     height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 5px 20px 0 20px;
+    box-shadow: 0 0 10px black;
 }
 
 #headerTitle {
@@ -31,19 +32,16 @@ body {
 }
 
 #addBookButton {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: blue;
-    border: none;
-    box-shadow: 0 0 10px black;
-    color: gray;
-    font-size: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 5px;
+    fill: #520120;
+    height: 70px;
     cursor: pointer;
+    transition-duration: 100ms;
+
+}
+
+#addBookButton:hover {
+    filter: drop-shadow(0 0 5px rgb(188, 188, 188));
+    transform: scale(1.1);
 }
 
 .bookCard {
@@ -56,6 +54,31 @@ body {
     border-radius: 10px;
     align-items: center;
     background-color: rgb(255, 217, 167);
+    transition-duration: 100ms;
+
+}
+
+.bookCard:hover {
+    transform: scale(1.005);
+    box-shadow: 0 0 15px black;
+
+}
+
+input,
+button {
+    border-radius: 7px;
+    outline: none;
+
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #520120;
+}
+
+#read,
+#unread {
+    accent-color: #520120;
 }
 
 #bookcardButtons {
@@ -83,9 +106,58 @@ body {
 }
 
 
-#modal {
-    max-width: 50vw;
+#addModal {
+    border: none;
+    border-radius: 15px;
     padding: 20px;
+    background-color: rgb(255, 217, 167);
+}
+
+#textInputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#submitNewBookButton,
+#deleteButton {
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+}
+
+#textInputContainer input,
+#submitNewBookButton {
+    margin: 5px;
+}
+
+#radioButtons {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+#addModal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#addModal::backdrop,
+#deleteModal::backdrop {
+    background: #08403ea5;
+}
+
+#deleteModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: rgb(255, 217, 167);
 }
 
 .info {
