@@ -59,17 +59,8 @@ Book.prototype.toggleStatus = function () {
     return this.status;
 }
 
-function deleteBook(event) {
-    let deleteButton = event.target;
-    let bookCard = deleteButton.closest('.bookCard');
-    if (bookCard) {
-        bookCard.remove();
-    }
-}
-
-
 function bookOnCard() {
-    bookCardsContainer.setHTML('')
+    bookCardsContainer.innerHTML = '';
     for (let i = 0; i < myLibrary.length; i++) {
         let currentBook = new Book(myLibrary[i].title, myLibrary[i].author,
             myLibrary[i].pages, myLibrary[i].status, myLibrary[i].cover);
@@ -87,10 +78,10 @@ function bookOnCard() {
         bookcardInfo.setAttribute('id', 'bookcardInfo')
         bookCard.appendChild(bookcardInfo);
 
-        bookcardInfo.setHTML(
+        bookcardInfo.innerHTML =
             `<p class="author info"><strong>title: </strong>${currentBook.title}</p>
              <p class="author info"><strong>author: </strong>${currentBook.author}</p>
-             <p class="pages info"><strong>pages: </strong>${currentBook.pages}</p>`);
+             <p class="pages info"><strong>pages: </strong>${currentBook.pages}</p>`;
 
         let bookcardButtons = document.createElement('div');
         bookcardButtons.setAttribute('id', 'bookcardButtons');
@@ -110,7 +101,6 @@ function bookOnCard() {
                 toggleButton.style.color = 'green' : toggleButton.style.color = 'brown';
         })
 
-
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('trashCanIcon');
         svg.setAttribute("viewbox", "0 0 100 100");
@@ -118,58 +108,41 @@ function bookOnCard() {
         useElement.setAttribute("href", "#trashCan");
         svg.appendChild(useElement);
         bookcardButtons.appendChild(svg);
-        // svg.addEventListener('click', deleteBook)
 
         let deleteModal = document.getElementById('deleteModal');
-        let deleteButton2 = document.getElementById('deleteButton2');
+        let deleteButton = document.getElementById('deleteButton');
         svg.addEventListener('click', () => {
             deleteModal.showModal();
+            toBeDeleted = i;
         })
-        deleteButton2.addEventListener('click', deleteBook)
+        deleteButton.addEventListener('click', deleteBook);
     }
 
 }
 
-function addBookToTheLibrary(title, author, pages, status) {
-    let newBook = new Book(title, author, pages, status)
-    let bookCard = document.createElement('div');
-    bookCard.classList.add('bookCard');
-    bookCardsContainer.appendChild(bookCard);
-
-    let cover = document.createElement('img')
-    cover.classList.add('cover');
-    cover.src = 'Covers/generic.png';
-    bookCard.appendChild(cover);
-
-    let bookcardInfo = document.createElement('div');
-    bookcardInfo.setAttribute('id', 'bookcardInfo')
-    bookCard.appendChild(bookcardInfo);
-
-    bookcardInfo.setHTML(
-        `<p class="info"><strong>title: </strong>${newBook.title}</p>
-         <p class="info"><strong>author: </strong>${newBook.author}</p>
-         <p class="info"><strong>pages: </strong>${newBook.pages}</p>`);
-
-    let bookcardButtons = document.createElement('div');
-    bookcardButtons.setAttribute('id', 'bookcardButtons');
-    bookcardInfo.appendChild(bookcardButtons);
-
-    let toggleButton = document.createElement('button');
-    toggleButton.textContent = newBook.status;
-    toggleButton.textContent === 'readed' ?
-        toggleButton.style.color = 'green' : toggleButton.style.color = 'brown';
-
-    bookcardButtons.appendChild(toggleButton);
-    toggleButton.classList.add('toggleButton')
-    toggleButton.addEventListener('click', function () {
-        newBook.toggleStatus();
-        toggleButton.textContent = newBook.status;
-        toggleButton.textContent === 'readed' ?
-            toggleButton.style.color = 'green' : toggleButton.style.color = 'brown';
-    })
+function addBookToTheLibrary(title, author, pages, status, cover) {
+    let newBook = new Book(title, author, pages, status, cover)
+    newBook.cover === undefined ? newBook.cover = 'covers/generic.png' : null;
+    myLibrary.unshift(newBook);
+    updateDOM();
 }
 
-function submit(event) {
+function updateDOM() {
+    bookCardsContainer.innerHTML = '';
+    bookOnCard();
+}
+
+let toBeDeleted = undefined;
+function deleteBook() {
+    if (toBeDeleted !== undefined) {
+        myLibrary.splice(toBeDeleted, 1);
+        updateDOM();
+        deleteModal.close();
+        toBeDeleted = undefined;
+    }
+}
+
+function submitNewBook(event) {
     event.preventDefault();
     let status = '';
     let title = document.getElementById('title');
@@ -192,8 +165,7 @@ addBookButton.addEventListener('click', () => {
     addModal.showModal();
 })
 
-let submitButton = document.getElementById('submitButton');
-submitButton.addEventListener('click', submit)
-
+let submitNewBookButton = document.getElementById('submitNewBookButton');
+submitNewBookButton.addEventListener('click', submitNewBook)
 
 bookOnCard();
