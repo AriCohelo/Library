@@ -3,7 +3,7 @@ let myLibrary = [{
     author: 'julio cortazar',
     pages: 200,
     status: 'read',
-    cover: 'covers/bestiario.png',
+    cover: 'Covers/bestiario.png',
     info: function () {
         return bookInfo.call(this);
     },
@@ -13,7 +13,7 @@ let myLibrary = [{
     author: 'hermann hesse',
     pages: 250,
     status: 'read',
-    cover: 'covers/loboestepario.jpeg',
+    cover: 'Covers/loboestepario.jpeg',
     info: function () {
         return bookInfo.call(this);
     }
@@ -22,7 +22,7 @@ let myLibrary = [{
     author: 'isabel allende',
     pages: 300,
     status: 'read',
-    cover: 'covers/espiritus.jpeg',
+    cover: 'Covers/espiritus.jpeg',
     info: function () {
         return bookInfo.call(this);
     }
@@ -31,7 +31,7 @@ let myLibrary = [{
     author: 'a. schopenhauer',
     pages: 290,
     status: 'unread',
-    cover: 'covers/voluntad.jpg',
+    cover: 'Covers/voluntad.jpg',
     info: function () {
         return bookInfo.call(this);
     }
@@ -119,7 +119,7 @@ function bookOnCard() {
 
 function addBookToTheLibrary(title, author, pages, status, cover) {
     let newBook = new Book(title, author, pages, status, cover)
-    newBook.cover === undefined ? newBook.cover = 'covers/generic.png' : null;
+    newBook.cover === undefined ? newBook.cover = 'Covers/generic.png' : null;
     myLibrary.unshift(newBook);
     updateDOM();
 }
