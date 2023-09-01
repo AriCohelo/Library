@@ -101,6 +101,7 @@ function bookOnCard() {
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.classList.add('trashCanIcon');
         svg.setAttribute("viewbox", "0 0 100 100");
+
         let useElement = document.createElementNS("http://www.w3.org/2000/svg", "use");
         useElement.setAttribute("href", "#trashCan");
         svg.appendChild(useElement);
@@ -112,10 +113,12 @@ function bookOnCard() {
             deleteModal.showModal();
             toBeDeleted = i;
         })
+
         deleteButton.addEventListener('click', deleteBook);
     }
 
 }
+
 
 function addBookToTheLibrary(title, author, pages, status, cover) {
     let newBook = new Book(title, author, pages, status, cover)
